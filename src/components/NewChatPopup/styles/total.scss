@@ -1,0 +1,119 @@
+$black-color-transparent: rgba(0, 0, 0, 0.75);
+$black-color: #000000;
+$white-color: #FFFFFF;
+$grey-color: #5F5F5F;
+$blue-color: #3A9BF0;
+$red-color: #FF0000;
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $black-color-transparent;
+    color: $black-color;
+    overflow: hidden;
+    overflow-y: auto;
+    transition: opacity 0.3s;
+    z-index: 999;
+
+    &__wrapper {
+        position: absolute;
+        top: calc(50% - 300px);
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 600px;
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        background-color: $white-color;
+        display: flex;
+        flex-direction: column;
+        border-radius: 24px;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 24px 0;
+        margin-bottom: 8px;
+        position: relative;
+
+        &__close {
+            cursor: pointer;
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+
+        h2{
+            text-align: center;
+            margin: 10px 0 20px;
+            font-weight: 400;
+        }
+    }
+
+    &__body {
+        padding: 0 24px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        p{
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 30px;
+            border: 1px $grey-color solid;
+            padding: 5px 10px;
+        }
+
+        .error{
+            color: $red-color;
+            font-size: 0.75em;
+            display: flex;
+        }
+
+        &__avatarSelection{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            label{
+                display: flex;
+                input{
+                    width: 10%;
+                }
+            }
+        }
+
+        &__btn {
+            text-decoration: none;
+            margin-bottom: 24px;
+            padding: 14px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px $blue-color solid;
+            background-color: $blue-color;
+            color: $white-color;
+            cursor: pointer;
+            transition: all .3s;
+            margin-top: 24px;
+
+            &:hover {
+                background-color: $white-color;
+                color: $blue-color;
+            }
+        }
+    }
+}
