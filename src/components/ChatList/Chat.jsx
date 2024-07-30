@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import { ChatContext } from '../../context/Context';
+import React, { useContext } from 'react'
+import { ChatContext } from '../../context/Context'
 
 export default function Chat({ styles, chat }) {
-    const { setActiveChat } = useContext(ChatContext);
+    const chatContext = useContext(ChatContext)
 
-    const handleClick = () => setActiveChat(chat);
+    const handleClick = () => chatContext.setActiveChat(chat)
 
     const formatDate = (dateString) => {
-        if(!dateString) return null
+        if (!dateString) return null
 
         const date = new Date(dateString)
         const hours = date.getHours().toString().padStart(2, '0')
@@ -19,7 +19,10 @@ export default function Chat({ styles, chat }) {
     }
 
     return (
-        <div className={styles.chatList__body__chats__chat} onClick={handleClick}>
+        <div 
+            className={`${styles.chatList__body__chats__chat} ${chatContext?.activeChat?._id === chat._id ? styles.active : ''}`} 
+            onClick={handleClick}
+        >
             <div className={styles.chatList__body__chats__chat__avatar}>
                 <img src={chat.avatar} alt="" />
             </div>

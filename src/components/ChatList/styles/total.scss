@@ -88,6 +88,10 @@ $blue-color: #3A9BF0;
         }
 
         &__chats {
+
+            .active{
+                background-color: $lightgrey-color;
+            }
             &__chat {
                 padding: 20px 10px;
                 width: 100%;
