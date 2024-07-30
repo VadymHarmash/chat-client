@@ -17,7 +17,6 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
 
             const updatedChat = await response.json()
 
-            // Update the specific chat in chatsData without changing the activeChat context
             chatContext.setChatsData((prevChats) =>
                 prevChats.map(chat =>
                     chat._id === updatedChat._id ? updatedChat : chat
@@ -41,7 +40,6 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
 
                 const updatedChatWithQuote = await quoteResponse.json()
 
-                // Update the specific chat in chatsData without changing the activeChat context
                 chatContext.setChatsData((prevChats) =>
                     prevChats.map(chat =>
                         chat._id === updatedChatWithQuote._id ? updatedChatWithQuote : chat
@@ -54,7 +52,6 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
         }
     }
 }
-
 
 export const getQuote = async (setQuote) => {
     try {
