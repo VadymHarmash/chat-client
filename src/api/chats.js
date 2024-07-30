@@ -1,6 +1,6 @@
 export const getChats = async (setChatsData) => {
     try {
-        const response = await fetch('http://localhost:5000/chats', {
+        const response = await fetch('https://chat-server-f5en.onrender.com/chats', {
             method: "GET"
         })
         const data = await response.json()
@@ -14,7 +14,7 @@ export const addNewChat = async (validateChatFields, name, surname, chatData, on
     const validationErrors = validateChatFields(name, surname);
     if (Object.keys(validationErrors).length === 0) {
         try {
-            await fetch("http://localhost:5000/chats", {
+            await fetch("https://chat-server-f5en.onrender.com/chats", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export const editChat = async (validateChatFields, chatContext, name, surname, o
         });
 
         try {
-            const response = await fetch(`http://localhost:5000/chats/${chatContext.activeChat._id}`, {
+            const response = await fetch(`https://chat-server-f5en.onrender.com/chats/${chatContext.activeChat._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export const editChat = async (validateChatFields, chatContext, name, surname, o
 
 export const deleteChat = async (chatContext, chatId) => {
     try {
-        const response = await fetch(`http://localhost:5000/chats/${chatId}`, {
+        const response = await fetch(`https://chat-server-f5en.onrender.com/chats/${chatId}`, {
             method: 'DELETE',
         })
         const data = await response.json()

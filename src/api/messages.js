@@ -7,7 +7,7 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/chats/${chatContext.activeChat._id}/messages`, {
+            const response = await fetch(`https://chat-server-f5en.onrender.com/chats/${chatContext.activeChat._id}/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
                     text: chatContext.quote.text,
                     date: new Date().toISOString(),
                 }
-                const quoteResponse = await fetch(`http://localhost:5000/chats/${chatContext.activeChat._id}/messages`, {
+                const quoteResponse = await fetch(`https://chat-server-f5en.onrender.com/chats/${chatContext.activeChat._id}/messages`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
