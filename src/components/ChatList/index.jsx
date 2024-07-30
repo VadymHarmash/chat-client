@@ -12,9 +12,7 @@ export default function ChatList() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        if (chatContext?.chatsData) {
-            setIsLoading(false)
-        }
+        if (chatContext?.chatsData) setIsLoading(false)
     }, [chatContext])
 
     const handleInputChange = (e) => setSearchText(e.target.value)

@@ -16,7 +16,13 @@ export default function Context({ children }) {
     useEffect(() => {
         generateQuote()
         getChatsData()
-    }, [activeChat?.messages])
+    }, [])
+
+    useEffect(() => {
+        if (activeChat) {
+            getChatsData()
+        }
+    }, [activeChat])
 
     const value = {
         chatsData,

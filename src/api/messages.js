@@ -16,33 +16,45 @@ export const sendMessage = async (messageText, setMessageText, chatContext) => {
             })
 
             const updatedChat = await response.json()
-            chatContext.setActiveChat(updatedChat)
+
+            // Update the specific chat in chatsData without changing the activeChat context
+            chatContext.setChatsData((prevChats) =>
+                prevChats.map(chat =>
+                    chat._id === updatedChat._id ? updatedChat : chat
+                )
+            )
             setMessageText('')
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 const quoteMessage = {
                     sender: 'other',
                     text: chatContext.quote.text,
                     date: new Date().toISOString(),
                 }
-                fetch(`http://localhost:5000/chats/${chatContext.activeChat._id}/messages`, {
+                const quoteResponse = await fetch(`http://localhost:5000/chats/${chatContext.activeChat._id}/messages`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(quoteMessage),
-                }).then((response) => response.json())
-                    .then((updatedChat) => {
-                        chatContext.setActiveChat(updatedChat)
-                        setMessageText(prev => prev)
-                        chatContext.generateQuote()
-                    })
+                })
+
+                const updatedChatWithQuote = await quoteResponse.json()
+
+                // Update the specific chat in chatsData without changing the activeChat context
+                chatContext.setChatsData((prevChats) =>
+                    prevChats.map(chat =>
+                        chat._id === updatedChatWithQuote._id ? updatedChatWithQuote : chat
+                    )
+                )
+                chatContext.generateQuote()
             }, 3000)
         } catch (error) {
             console.error('Error sending message:', error)
         }
     }
 }
+
 
 export const getQuote = async (setQuote) => {
     try {
